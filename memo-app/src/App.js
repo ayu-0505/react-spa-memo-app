@@ -16,6 +16,21 @@ function App() {
   const [memos, setMemos] = useState(parsedMemos);
   const [editingId, setEditingId] = useState(null);
 
+  function handleEditClick(memoId, title, content) {
+    const nextMemos = memos.map((memo) => {
+      if (memo.id === memoId) {
+        return { ...memo, title, content };
+      } else {
+        return memo;
+      }
+    });
+    setMemos(nextMemos);
+  }
+
+  function handleDeleteClick(memoId) {
+    setMemos(memos.filter((memo) => memo.id !== memoId));
+  }
+
   return (
     <div className="App">
       <body>
@@ -24,10 +39,12 @@ function App() {
           <MemoList memos={memos} onSelectMemo={setEditingId} />
           {Boolean(editingId) && (
             <TextArea
-              memoId={editingId}
+              memo={memos.find((memo) => memo.id === editingId)}
               onCancelEditing={() => {
                 setEditingId(null);
               }}
+              onFinishEditing={handleEditClick}
+              onDecideDelite={handleDeleteClick}
             />
           )}
         </section>
