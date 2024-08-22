@@ -49,7 +49,11 @@ function App() {
   }
 
   function handleAddClick(memoId) {
-    const nextMemos = memos.concat({ id: memoId, title: "", content: "" });
+    const nextMemos = memos.concat({
+      id: memoId,
+      title: "新規メモ",
+      content: "",
+    });
     const jsonMemos = JSON.stringify(nextMemos);
     localStorage.setItem("memos", jsonMemos);
     setMemos(nextMemos);
