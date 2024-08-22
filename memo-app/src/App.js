@@ -6,15 +6,27 @@ import TextArea from "./TextArea.js";
 import { v4 as uuid } from "uuid";
 
 function App() {
-  const memo1 = { id: uuid(), title: "memo1", content: "memo1_content" };
-  const memo2 = { id: uuid(), title: "memo2", content: "memo2_content" };
-  const memo3 = { id: uuid(), title: "memo3", content: "memo3_content" };
-  const planeMemos = [memo1, memo2, memo3];
-  const jsonMemos = JSON.stringify(planeMemos);
-  localStorage.setItem("memos", jsonMemos);
-  const parsedMemos = JSON.parse(localStorage.getItem("memos"));
+  // const memo1 = { id: uuid(), title: "memo1", content: "memo1_content" };
+  // const memo2 = { id: uuid(), title: "memo2", content: "memo2_content" };
+  // const memo3 = { id: uuid(), title: "memo3", content: "memo3_content" };
+  // const planeMemos = [memo1, memo2, memo3];
+  // const jsonMemos = JSON.stringify(planeMemos);
+  // localStorage.setItem("memos", jsonMemos);
+  // const parsedMemos = JSON.parse(localStorage.getItem("memos"));
 
-  const [memos, setMemos] = useState(parsedMemos);
+  const [memos, setMemos] = useState(() => {
+    try {
+      const memos = localStorage.getItem("memos");
+      return memos ? JSON.parse(memos) : [];
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        console.error(error);
+      } else {
+        throw error;
+      }
+      return [];
+    }
+  });
   const [editingId, setEditingId] = useState(null);
 
   function handleEditClick(memoId, title, content) {
@@ -25,11 +37,16 @@ function App() {
         return memo;
       }
     });
+    const jsonMemos = JSON.stringify(nextMemos);
+    localStorage.setItem("memos", jsonMemos);
     setMemos(nextMemos);
   }
 
   function handleDeleteClick(memoId) {
-    setMemos(memos.filter((memo) => memo.id !== memoId));
+    const nextMemos = memos.filter((memo) => memo.id !== memoId);
+    const jsonMemos = JSON.stringify(nextMemos);
+    localStorage.setItem("memos", jsonMemos);
+    setMemos(nextMemos);
   }
 
   return (
