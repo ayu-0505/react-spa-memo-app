@@ -3,7 +3,6 @@ import "./App.css";
 import MemoList from "./MemoList.js";
 import { useState } from "react";
 import TextArea from "./TextArea.js";
-import { v4 as uuid } from "uuid";
 
 function App() {
   // const memo1 = { id: uuid(), title: "memo1", content: "memo1_content" };
@@ -49,12 +48,23 @@ function App() {
     setMemos(nextMemos);
   }
 
+  function handleAddClick(memoId) {
+    const nextMemos = memos.concat({ id: memoId, title: "", content: "" });
+    const jsonMemos = JSON.stringify(nextMemos);
+    localStorage.setItem("memos", jsonMemos);
+    setMemos(nextMemos);
+  }
+
   return (
     <div className="App">
       <body>
         <section>
           <h1>{editingId ? "編集" : "一覧"}</h1>
-          <MemoList memos={memos} onSelectMemo={setEditingId} />
+          <MemoList
+            memos={memos}
+            onSelectMemo={setEditingId}
+            onAddMemo={handleAddClick}
+          />
           {Boolean(editingId) && (
             <TextArea
               memo={memos.find((memo) => memo.id === editingId)}

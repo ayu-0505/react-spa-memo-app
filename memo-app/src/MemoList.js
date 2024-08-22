@@ -1,6 +1,7 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 
-export default function MemoList({ memos, onSelectMemo }) {
+export default function MemoList({ memos, onSelectMemo, onAddMemo }) {
   const titles = memos.map((memo) => (
     <li
       key={memo.id}
@@ -15,7 +16,16 @@ export default function MemoList({ memos, onSelectMemo }) {
     <section>
       <ui>
         {titles}
-        <li>+</li>
+        <li
+          key="newMemo"
+          onClick={() => {
+            const newId = uuid();
+            onAddMemo(newId);
+            onSelectMemo(newId);
+          }}
+        >
+          +
+        </li>
       </ui>
     </section>
   );
