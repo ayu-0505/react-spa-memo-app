@@ -29,6 +29,9 @@ function App() {
   const [editingId, setEditingId] = useState(null);
 
   function handleEditClick(memoId, title, content) {
+    if (title === "") {
+      title = "No Title";
+    }
     const nextMemos = memos.map((memo) => {
       if (memo.id === memoId) {
         return { ...memo, title, content };
