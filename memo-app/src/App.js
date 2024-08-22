@@ -3,11 +3,12 @@ import "./App.css";
 import MemoList from "./MemoList.js";
 import { useState } from "react";
 import TextArea from "./TextArea.js";
+import { v4 as uuid } from "uuid";
 
 function App() {
-  const memo1 = { id: 1, title: "memo1", content: "memo1_content" };
-  const memo2 = { id: 2, title: "memo2", content: "memo2_content" };
-  const memo3 = { id: 3, title: "memo3", content: "memo3_content" };
+  const memo1 = { id: uuid(), title: "memo1", content: "memo1_content" };
+  const memo2 = { id: uuid(), title: "memo2", content: "memo2_content" };
+  const memo3 = { id: uuid(), title: "memo3", content: "memo3_content" };
   const planeMemos = [memo1, memo2, memo3];
   const jsonMemos = JSON.stringify(planeMemos);
   localStorage.setItem("memos", jsonMemos);
