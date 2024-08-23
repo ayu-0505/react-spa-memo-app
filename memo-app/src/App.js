@@ -74,6 +74,7 @@ function App() {
           />
           {Boolean(editingId) && (
             <TextArea
+              key={editingId}
               memo={memos.find((memo) => memo.id === editingId)}
               onCancelEditing={() => {
                 setEditingId(null);
