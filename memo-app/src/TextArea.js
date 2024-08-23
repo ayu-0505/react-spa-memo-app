@@ -15,10 +15,8 @@ export default function TextArea({
   // const formattedText = text.replace(/\n/g, "<br>");
 
   return (
-    <section>
+    <section id="itemB">
       <textarea value={text} onChange={(e) => setText(e.target.value)} />
-      <p>{title}</p>
-      <p>{content}</p>
       <button
         onClick={() => {
           onFinishEditing(memo.id, title, content);

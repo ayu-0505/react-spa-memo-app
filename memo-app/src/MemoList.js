@@ -14,7 +14,7 @@ export default function MemoList({ memos, onSelectMemo, onAddMemo }) {
     </li>
   ));
   return (
-    <section>
+    <section id="itemA">
       <ui>
         {titles}
         <li

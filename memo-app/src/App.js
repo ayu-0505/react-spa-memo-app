@@ -65,8 +65,8 @@ function App() {
   return (
     <div className="App">
       <body>
-        <section>
-          <h1>{editingId ? "編集" : "一覧"}</h1>
+        <h1>{editingId ? "編集" : "一覧"}</h1>
+        <section id="container">
           <MemoList
             memos={memos}
             onSelectMemo={setEditingId}

@@ -28,6 +28,21 @@
   color: #61dafb;
 }
 
+#container {
+  padding: 0.5em 1em;
+  margin: 0 auto;
+  font-weight: bold;
+  color: #6091d3; /*文字色*/
+  background: #fff;
+  border: solid 3px #6091d3; /*線*/
+  border-radius: 10px; /*角の丸み*/
+  width: 90%;
+  height: 500px;
+
+  display: grid; /* グリッドレイアウト */
+  grid-template-columns: 1fr 1fr;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
