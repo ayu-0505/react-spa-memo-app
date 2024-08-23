@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import "./TextArea.css";
 
 export default function TextArea({
   memo,

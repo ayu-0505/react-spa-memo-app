@@ -1,5 +1,6 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
+import "./MemoList.css";
 
 export default function MemoList({ memos, onSelectMemo, onAddMemo }) {
   const titles = memos.map((memo) => (
