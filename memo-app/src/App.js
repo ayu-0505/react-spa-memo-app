@@ -5,14 +5,6 @@ import { useState } from "react";
 import TextArea from "./TextArea.js";
 
 function App() {
-  // const memo1 = { id: uuid(), title: "memo1", content: "memo1_content" };
-  // const memo2 = { id: uuid(), title: "memo2", content: "memo2_content" };
-  // const memo3 = { id: uuid(), title: "memo3", content: "memo3_content" };
-  // const planeMemos = [memo1, memo2, memo3];
-  // const jsonMemos = JSON.stringify(planeMemos);
-  // localStorage.setItem("memos", jsonMemos);
-  // const parsedMemos = JSON.parse(localStorage.getItem("memos"));
-
   const [memos, setMemos] = useState(() => {
     try {
       const memos = localStorage.getItem("memos");
