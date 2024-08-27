@@ -26,7 +26,7 @@ export default function MemoList({ memos, onSelectId, onAdd }) {
             onSelectId(newId);
           }}
         >
-          +
+          ＋
         </li>
       </ul>
     </section>
