@@ -12,7 +12,6 @@ export default function TextArea({
   const firstIndex = text.indexOf("\n");
   const title = text.substring(0, firstIndex);
   const content = text.substring(firstIndex + 1);
-  // const formattedText = text.replace(/\n/g, "<br>");
 
   return (
     <section id="itemB">

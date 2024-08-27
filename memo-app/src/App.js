@@ -39,27 +39,25 @@ function App() {
 
   return (
     <div className="App">
-      <body>
-        <h1>{editingId ? "編集" : "一覧"}</h1>
-        <section id="container">
-          <MemoList
-            memos={memos}
-            onSelectMemo={setEditingId}
-            onAddMemo={handleAddClick}
+      <h1>{editingId ? "編集" : "一覧"}</h1>
+      <section id="container">
+        <MemoList
+          memos={memos}
+          onSelectMemo={setEditingId}
+          onAddMemo={handleAddClick}
+        />
+        {Boolean(editingId) && (
+          <TextArea
+            key={editingId}
+            memo={memos.find((memo) => memo.id === editingId)}
+            onCancelEditing={() => {
+              setEditingId(null);
+            }}
+            onFinishEditing={handleEditClick}
+            onDecideDelite={handleDeleteClick}
           />
-          {Boolean(editingId) && (
-            <TextArea
-              key={editingId}
-              memo={memos.find((memo) => memo.id === editingId)}
-              onCancelEditing={() => {
-                setEditingId(null);
-              }}
-              onFinishEditing={handleEditClick}
-              onDecideDelite={handleDeleteClick}
-            />
-          )}
-        </section>
-      </body>
+        )}
+      </section>
     </div>
   );
 }

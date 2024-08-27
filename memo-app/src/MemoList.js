@@ -15,7 +15,7 @@ export default function MemoList({ memos, onSelectMemo, onAddMemo }) {
   ));
   return (
     <section id="itemA">
-      <ui>
+      <ul>
         {titles}
         <li
           key="newMemo"
@@ -27,7 +27,7 @@ export default function MemoList({ memos, onSelectMemo, onAddMemo }) {
         >
           +
         </li>
-      </ui>
+      </ul>
     </section>
   );
 }
