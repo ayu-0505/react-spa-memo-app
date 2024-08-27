@@ -2,17 +2,18 @@ import React from "react";
 import { v4 as uuid } from "uuid";
 import "./MemoList.css";
 
-export default function MemoList({ memos, onSelectMemo, onAddMemo }) {
+export default function MemoList({ memos, onSelectId, onAdd }) {
   const titles = memos.map((memo) => (
     <li
       key={memo.id}
       onClick={() => {
-        onSelectMemo(memo.id);
+        onSelectId(memo.id);
       }}
     >
       {memo.title}
     </li>
   ));
+
   return (
     <section id="itemA">
       <ul>
@@ -21,8 +22,8 @@ export default function MemoList({ memos, onSelectMemo, onAddMemo }) {
           key="newMemo"
           onClick={() => {
             const newId = uuid();
-            onAddMemo(newId);
-            onSelectMemo(newId);
+            onAdd(newId);
+            onSelectId(newId);
           }}
         >
           +

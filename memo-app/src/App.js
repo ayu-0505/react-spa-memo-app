@@ -1,13 +1,22 @@
 import React from "react";
 import { useState } from "react";
-import "./App.css";
 import MemoList from "./MemoList.js";
 import TextArea from "./TextArea.js";
 import useLocalStrage from "./useLocalStrage.js";
+import "./App.css";
 
 function App() {
   const [memos, setMemos] = useLocalStrage("memos", []);
   const [editingId, setEditingId] = useState(null);
+
+  function handleAddClick(memoId) {
+    const nextMemos = memos.concat({
+      id: memoId,
+      title: "新規メモ",
+      content: "",
+    });
+    setMemos(nextMemos);
+  }
 
   function handleEditClick(memoId, title, content) {
     if (title === "") {
@@ -28,33 +37,24 @@ function App() {
     setMemos(nextMemos);
   }
 
-  function handleAddClick(memoId) {
-    const nextMemos = memos.concat({
-      id: memoId,
-      title: "新規メモ",
-      content: "",
-    });
-    setMemos(nextMemos);
-  }
-
   return (
     <div className="App">
       <h1>{editingId ? "編集" : "一覧"}</h1>
       <section id="container">
         <MemoList
           memos={memos}
-          onSelectMemo={setEditingId}
-          onAddMemo={handleAddClick}
+          onSelectId={setEditingId}
+          onAdd={handleAddClick}
         />
         {Boolean(editingId) && (
           <TextArea
             key={editingId}
             memo={memos.find((memo) => memo.id === editingId)}
-            onCancelEditing={() => {
+            onReturnToList={() => {
               setEditingId(null);
             }}
-            onFinishEditing={handleEditClick}
-            onDecideDelite={handleDeleteClick}
+            onUpdate={handleEditClick}
+            onDelite={handleDeleteClick}
           />
         )}
       </section>
