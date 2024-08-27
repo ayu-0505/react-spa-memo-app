@@ -1,23 +1,12 @@
 import React from "react";
+import { useState } from "react";
 import "./App.css";
 import MemoList from "./MemoList.js";
-import { useState } from "react";
 import TextArea from "./TextArea.js";
+import useLocalStrage from "./useLocalStrage.js";
 
 function App() {
-  const [memos, setMemos] = useState(() => {
-    try {
-      const memos = localStorage.getItem("memos");
-      return memos ? JSON.parse(memos) : [];
-    } catch (error) {
-      if (error instanceof SyntaxError) {
-        console.error(error);
-      } else {
-        throw error;
-      }
-      return [];
-    }
-  });
+  const [memos, setMemos] = useLocalStrage("memos", []);
   const [editingId, setEditingId] = useState(null);
 
   function handleEditClick(memoId, title, content) {
@@ -31,15 +20,11 @@ function App() {
         return memo;
       }
     });
-    const jsonMemos = JSON.stringify(nextMemos);
-    localStorage.setItem("memos", jsonMemos);
     setMemos(nextMemos);
   }
 
   function handleDeleteClick(memoId) {
     const nextMemos = memos.filter((memo) => memo.id !== memoId);
-    const jsonMemos = JSON.stringify(nextMemos);
-    localStorage.setItem("memos", jsonMemos);
     setMemos(nextMemos);
   }
 
@@ -49,8 +34,6 @@ function App() {
       title: "新規メモ",
       content: "",
     });
-    const jsonMemos = JSON.stringify(nextMemos);
-    localStorage.setItem("memos", jsonMemos);
     setMemos(nextMemos);
   }
 
