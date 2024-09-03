@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import MemoList from "./MemoList.js";
-import TextArea from "./TextArea.js";
+import MemoForm from "./MemoForm.js";
 import useLocalStrage from "./useLocalStrage.js";
 import "./App.css";
 
@@ -47,7 +47,7 @@ function App() {
           onAdd={handleAddClick}
         />
         {Boolean(editingId) && (
-          <TextArea
+          <MemoForm
             key={editingId}
             memo={memos.find((memo) => memo.id === editingId)}
             onReturnToList={() => {

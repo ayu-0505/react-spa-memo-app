@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import "./TextArea.css";
+import "./MemoForm.css";
 
-export default function TextArea({ memo, onReturnToList, onUpdate, onDelite }) {
+export default function MemoForm({ memo, onReturnToList, onUpdate, onDelite }) {
   const [text, setText] = useState(`${memo.title}\n${memo.content}`);
   const newLine = text.indexOf("\n");
   const title = text.substring(0, newLine);
