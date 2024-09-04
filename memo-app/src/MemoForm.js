@@ -14,22 +14,26 @@ export default function MemoForm({ memo, onReturnToList, onUpdate, onDelite }) {
   return (
     <section id="itemB">
       <textarea value={text} onChange={(e) => setText(e.target.value)} />
-      <button
-        onClick={() => {
-          onUpdate(memo.id, title, content);
-          onReturnToList();
-        }}
-      >
-        編集
-      </button>
-      <button
-        onClick={() => {
-          onDelite(memo.id);
-          onReturnToList();
-        }}
-      >
-        削除
-      </button>
+      {isLoggedIn && (
+        <button
+          onClick={() => {
+            onUpdate(memo.id, title, content);
+            onReturnToList();
+          }}
+        >
+          編集
+        </button>
+      )}
+      {isLoggedIn && (
+        <button
+          onClick={() => {
+            onDelite(memo.id);
+            onReturnToList();
+          }}
+        >
+          削除
+        </button>
+      )}
     </section>
   );
 }

@@ -46,7 +46,13 @@ function App() {
   return (
     <div className="App">
       <loginContext.Provider value={isLoggedIn}>
-        <button>{isLoggedIn ? "ログアウト" : "ログイン"}</button>
+        <button
+          onClick={() => {
+            setIsLoggedIn(!isLoggedIn);
+          }}
+        >
+          {isLoggedIn ? "ログアウト" : "ログイン"}
+        </button>
         <h1>{editingId ? "編集" : "一覧"}</h1>
         <section id="container">
           <MemoList
