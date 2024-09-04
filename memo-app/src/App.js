@@ -11,10 +11,6 @@ function App() {
   const [editingId, setEditingId] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  // function handleLoginClick() {
-  //   setIsLoggedIn(!isLoggedIn);
-  // }
-
   function handleAddClick(memoId) {
     const nextMemos = memos.concat({
       id: memoId,
