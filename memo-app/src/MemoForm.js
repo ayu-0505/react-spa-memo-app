@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import { useContext } from "react";
+import { loginContext } from "./loginContext.js";
 import "./MemoForm.css";
 
 export default function MemoForm({ memo, onReturnToList, onUpdate, onDelite }) {
@@ -7,6 +9,7 @@ export default function MemoForm({ memo, onReturnToList, onUpdate, onDelite }) {
   const newLine = text.indexOf("\n");
   const title = text.substring(0, newLine);
   const content = text.substring(newLine + 1);
+  const isLoggedIn = useContext(loginContext);
 
   return (
     <section id="itemB">

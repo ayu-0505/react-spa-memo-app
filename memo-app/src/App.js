@@ -3,11 +3,17 @@ import { useState } from "react";
 import MemoList from "./MemoList.js";
 import MemoForm from "./MemoForm.js";
 import useLocalStrage from "./useLocalStrage.js";
+import { loginContext } from "./loginContext.js";
 import "./App.css";
 
 function App() {
   const [memos, setMemos] = useLocalStrage("memos", []);
   const [editingId, setEditingId] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  // function handleLoginClick() {
+  //   setIsLoggedIn(!isLoggedIn);
+  // }
 
   function handleAddClick(memoId) {
     const nextMemos = memos.concat({
@@ -39,25 +45,28 @@ function App() {
 
   return (
     <div className="App">
-      <h1>{editingId ? "編集" : "一覧"}</h1>
-      <section id="container">
-        <MemoList
-          memos={memos}
-          onSelectId={setEditingId}
-          onAdd={handleAddClick}
-        />
-        {Boolean(editingId) && (
-          <MemoForm
-            key={editingId}
-            memo={memos.find((memo) => memo.id === editingId)}
-            onReturnToList={() => {
-              setEditingId(null);
-            }}
-            onUpdate={handleEditClick}
-            onDelite={handleDeleteClick}
+      <loginContext.Provider value={isLoggedIn}>
+        <button>{isLoggedIn ? "ログアウト" : "ログイン"}</button>
+        <h1>{editingId ? "編集" : "一覧"}</h1>
+        <section id="container">
+          <MemoList
+            memos={memos}
+            onSelectId={setEditingId}
+            onAdd={handleAddClick}
           />
-        )}
-      </section>
+          {Boolean(editingId) && (
+            <MemoForm
+              key={editingId}
+              memo={memos.find((memo) => memo.id === editingId)}
+              onReturnToList={() => {
+                setEditingId(null);
+              }}
+              onUpdate={handleEditClick}
+              onDelite={handleDeleteClick}
+            />
+          )}
+        </section>
+      </loginContext.Provider>
     </div>
   );
 }

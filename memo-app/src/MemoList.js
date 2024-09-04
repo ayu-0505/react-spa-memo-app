@@ -1,5 +1,7 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
+import { useContext } from "react";
+import { loginContext } from "./loginContext.js";
 import "./MemoList.css";
 
 export default function MemoList({ memos, onSelectId, onAdd }) {
@@ -13,21 +15,24 @@ export default function MemoList({ memos, onSelectId, onAdd }) {
       {memo.title}
     </li>
   ));
+  const isLoggedIn = useContext(loginContext);
 
   return (
     <section id="itemA">
       <ul>
         {titles}
-        <li
-          key="newMemo"
-          onClick={() => {
-            const newId = uuid();
-            onAdd(newId);
-            onSelectId(newId);
-          }}
-        >
-          ＋
-        </li>
+        {isLoggedIn && (
+          <li
+            key="newMemo"
+            onClick={() => {
+              const newId = uuid();
+              onAdd(newId);
+              onSelectId(newId);
+            }}
+          >
+            ＋
+          </li>
+        )}
       </ul>
     </section>
   );
