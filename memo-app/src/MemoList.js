@@ -1,6 +1,6 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
-import { useLogin } from "./loginContext.js";
+import { useAuthentication } from "./loginContext.js";
 import "./MemoList.css";
 
 export default function MemoList({ memos, onSelectId, onAdd }) {
@@ -14,7 +14,7 @@ export default function MemoList({ memos, onSelectId, onAdd }) {
       {memo.title}
     </li>
   ));
-  const { isLoggedIn } = useLogin();
+  const { isLoggedIn } = useAuthentication();
 
   return (
     <section id="itemA">

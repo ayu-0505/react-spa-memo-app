@@ -3,13 +3,13 @@ import { useState } from "react";
 import MemoList from "./MemoList.js";
 import MemoForm from "./MemoForm.js";
 import useLocalStrage from "./useLocalStrage.js";
-import { useLogin } from "./loginContext.js";
+import { useAuthentication } from "./loginContext.js";
 import "./App.css";
 
 function App() {
   const [memos, setMemos] = useLocalStrage("memos", []);
   const [editingId, setEditingId] = useState(null);
-  const { isLoggedIn, handleAuthButtonClick } = useLogin();
+  const { isLoggedIn, handleToggleAuth } = useAuthentication();
 
   function handleAddClick(memoId) {
     const nextMemos = memos.concat({
@@ -41,7 +41,7 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={handleAuthButtonClick}>
+      <button onClick={handleToggleAuth}>
         {isLoggedIn ? "ログアウト" : "ログイン"}
       </button>
       <h1>{editingId ? "編集" : "一覧"}</h1>

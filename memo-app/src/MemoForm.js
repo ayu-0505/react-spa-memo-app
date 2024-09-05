@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useLogin } from "./loginContext.js";
+import { useAuthentication } from "./loginContext.js";
 import "./MemoForm.css";
 
 export default function MemoForm({ memo, onReturnToList, onUpdate, onDelite }) {
@@ -8,7 +8,7 @@ export default function MemoForm({ memo, onReturnToList, onUpdate, onDelite }) {
   const newLine = text.indexOf("\n");
   const title = text.substring(0, newLine);
   const content = text.substring(newLine + 1);
-  const { isLoggedIn } = useLogin();
+  const { isLoggedIn } = useAuthentication();
 
   return (
     <section id="itemB">

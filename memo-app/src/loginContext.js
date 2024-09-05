@@ -1,19 +1,19 @@
 import React, { useState, createContext, useContext } from "react";
 
-const LoginContext = createContext();
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  function handleAuthButtonClick() {
+  function handleToggleAuth() {
     setIsLoggedIn(!isLoggedIn);
   }
 
   return (
-    <LoginContext.Provider value={{ isLoggedIn, handleAuthButtonClick }}>
+    <AuthContext.Provider value={{ isLoggedIn, handleToggleAuth }}>
       {children}
-    </LoginContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
-export const useLogin = () => useContext(LoginContext);
+export const useAuthentication = () => useContext(AuthContext);
