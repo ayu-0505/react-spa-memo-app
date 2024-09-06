@@ -39,12 +39,14 @@ function App() {
     setMemos(nextMemos);
   }
 
+  const Headline = editingId ? (isLoggedIn ? "編集" : "メモ詳細") : "一覧";
+
   return (
     <div className="App">
       <button onClick={handleToggleAuth}>
         {isLoggedIn ? "ログアウト" : "ログイン"}
       </button>
-      <h1>{editingId ? "編集" : "一覧"}</h1>
+      <h1>{Headline}</h1>
       <section id="container">
         <MemoList
           memos={memos}
