@@ -33,6 +33,13 @@ export default function MemoForm({ memo, onReturnToList, onUpdate, onDelite }) {
           削除
         </button>
       )}
+      <button
+        onClick={() => {
+          onReturnToList();
+        }}
+      >
+        閉じる
+      </button>
     </section>
   );
 }
