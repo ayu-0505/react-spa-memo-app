@@ -3,7 +3,7 @@ import { useState } from "react";
 import MemoList from "./MemoList.js";
 import MemoForm from "./MemoForm.js";
 import useLocalStrage from "./useLocalStrage.js";
-import { useAuthentication } from "./loginContext.js";
+import { useAuthentication } from "./authContext.js";
 import "./App.css";
 
 function App() {
@@ -39,14 +39,14 @@ function App() {
     setMemos(nextMemos);
   }
 
-  const Headline = editingId ? (isLoggedIn ? "編集" : "メモ詳細") : "一覧";
+  const headline = editingId ? (isLoggedIn ? "編集" : "メモ詳細") : "一覧";
 
   return (
     <div className="App">
       <button onClick={handleToggleAuth}>
         {isLoggedIn ? "ログアウト" : "ログイン"}
       </button>
-      <h1>{Headline}</h1>
+      <h1>{headline}</h1>
       <section id="container">
         <MemoList
           memos={memos}

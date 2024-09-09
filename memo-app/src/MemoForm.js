@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useAuthentication } from "./loginContext.js";
+import { useAuthentication } from "./authContext.js";
 import "./MemoForm.css";
 
 export default function MemoForm({ memo, onReturnToList, onUpdate, onDelite }) {

@@ -1,6 +1,6 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
-import { useAuthentication } from "./loginContext.js";
+import { useAuthentication } from "./authContext.js";
 import "./MemoList.css";
 
 export default function MemoList({ memos, onSelectId, onAdd }) {
