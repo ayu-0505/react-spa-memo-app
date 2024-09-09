@@ -12,7 +12,11 @@ export default function MemoForm({ memo, onReturnToList, onUpdate, onDelite }) {
 
   return (
     <section id="itemB">
-      <textarea value={text} onChange={(e) => setText(e.target.value)} />
+      {isLoggedIn ? (
+        <textarea value={text} onChange={(e) => setText(e.target.value)} />
+      ) : (
+        <textarea value={text} readOnly />
+      )}
       {isLoggedIn && (
         <button
           onClick={() => {
