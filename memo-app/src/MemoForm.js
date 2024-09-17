@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useAuthentication } from "./authContext.js";
 import "./MemoForm.css";
 
 export default function MemoForm({ memo, onReturnToList, onUpdate, onDelite }) {
@@ -7,26 +8,44 @@ export default function MemoForm({ memo, onReturnToList, onUpdate, onDelite }) {
   const newLine = text.indexOf("\n");
   const title = text.substring(0, newLine);
   const content = text.substring(newLine + 1);
+  const { isLoggedIn } = useAuthentication();
 
   return (
     <section id="itemB">
-      <textarea value={text} onChange={(e) => setText(e.target.value)} />
-      <button
-        onClick={() => {
-          onUpdate(memo.id, title, content);
-          onReturnToList();
-        }}
-      >
-        編集
-      </button>
-      <button
-        onClick={() => {
-          onDelite(memo.id);
-          onReturnToList();
-        }}
-      >
-        削除
-      </button>
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        readOnly={!isLoggedIn}
+      />
+      {isLoggedIn && (
+        <button
+          onClick={() => {
+            onUpdate(memo.id, title, content);
+            onReturnToList();
+          }}
+        >
+          編集
+        </button>
+      )}
+      {isLoggedIn && (
+        <>
+          <button
+            onClick={() => {
+              onDelite(memo.id);
+              onReturnToList();
+            }}
+          >
+            削除
+          </button>
+          <button
+            onClick={() => {
+              onReturnToList();
+            }}
+          >
+            閉じる
+          </button>
+        </>
+      )}
     </section>
   );
 }
