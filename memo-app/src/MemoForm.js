@@ -12,11 +12,11 @@ export default function MemoForm({ memo, onReturnToList, onUpdate, onDelite }) {
 
   return (
     <section id="itemB">
-      {isLoggedIn ? (
-        <textarea value={text} onChange={(e) => setText(e.target.value)} />
-      ) : (
-        <textarea value={text} readOnly />
-      )}
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        readOnly={!isLoggedIn}
+      />
       {isLoggedIn && (
         <button
           onClick={() => {
@@ -28,22 +28,24 @@ export default function MemoForm({ memo, onReturnToList, onUpdate, onDelite }) {
         </button>
       )}
       {isLoggedIn && (
-        <button
-          onClick={() => {
-            onDelite(memo.id);
-            onReturnToList();
-          }}
-        >
-          削除
-        </button>
+        <>
+          <button
+            onClick={() => {
+              onDelite(memo.id);
+              onReturnToList();
+            }}
+          >
+            削除
+          </button>
+          <button
+            onClick={() => {
+              onReturnToList();
+            }}
+          >
+            閉じる
+          </button>
+        </>
       )}
-      <button
-        onClick={() => {
-          onReturnToList();
-        }}
-      >
-        閉じる
-      </button>
     </section>
   );
 }
